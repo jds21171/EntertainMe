@@ -22,11 +22,11 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
-const MONGOB_URI = process.env.MONGOB_URI || "mongodb://localhost/googlebooks";
+// const MONGOB_URI = process.env.MONGOB_URI || "mongodb://localhost/googlebooks";
 
 // connect to database
-mongoose.connect(MONGOB_URI);
-// mongoose.connect(process.env.MONGOB_URI || "mongodb://localhost/googlebooks")
+// mongoose.connect(MONGOB_URI);
+mongoose.connect(process.env.MONGOB_URI || "mongodb://localhost/googlebooks")
 
 app.listen(PORT, () => {
   console.log(`🌎 ==> API server now on port ${PORT}!`);
