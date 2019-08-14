@@ -6,19 +6,24 @@ import { Input, SearchButton } from "../components/Input";
 
 class Search extends Component {
 
+    // instatiate state for list of books retrieved from googlebooks api and bookSearch value
     state = {
         books: [],
         bookSearch: ""
     };
 
     handleInputChange = event => {
+        // Destructure the name and value properties off of event.target
+        // Update the appropriate state
         const { name, value } = event.target;
         this.setState({ [name]: value })
     };
 
     handleFormSubmit = event => {
+        // When the form is submitted, prevent its default behavior, get book update the books state
         event.preventDefault();
 
+        // calls googlebooks api and returns searched book when search button is clicked
         API.searchBooks(this.state.bookSearch)
             .then(res => {
                 this.setState({ books: res.data.items }, function () {
@@ -45,15 +50,6 @@ class Search extends Component {
                                                 placeholder="Search for a Book"
                                             />
                                         </Col>
-                                        {/* <Col size="xs-3 sm-2">
-                                            <SearchButton
-                                                onClick={this.handleFormSubmit}
-                                                type="success"
-                                                className="input-lg"
-                                            >
-                                                Search
-                                            </SearchButton>
-                                        </Col> */}
                                     </Row>
                                     <Row>
                                         <Col size="xs-12 sm-12">
@@ -81,6 +77,7 @@ class Search extends Component {
                                             authors={book.volumeInfo.authors}
                                             link={book.volumeInfo.infoLink}
                                             description={book.volumeInfo.description}
+                                            // if no imageLinks then use placeholder image
                                             image={book.volumeInfo.imageLinks === undefined ? "http://siddallheatingandcooling.net/_imgstore/5/1360415/thumbnail/FSeY96wEdX_eY4XkBN2jfYnuY9A.png" : `${book.volumeInfo.imageLinks.thumbnail}`}
                                         />);
                                 })}

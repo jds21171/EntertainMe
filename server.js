@@ -22,6 +22,7 @@ app.get("*", (req, res) => {
   res.sendFile(path.join(__dirname, "./client/build/index.html"));
 });
 
+// connect to database
 mongoose.connect(process.env.MONGOB_URI || "mongodb://localhost/googlebooks")
 
 app.listen(PORT, () => {

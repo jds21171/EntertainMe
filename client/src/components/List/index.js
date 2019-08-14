@@ -11,8 +11,10 @@ export function BookList({ children }) {
     return <ul className="list-group">{children}</ul>;
 };
 
+// component to render each book
 export function BookListItem(props) {
 
+    // function to handle saving book to db when save button is clicked
     const handleSaveBtn = event => {
 
         API.saveBook({
@@ -29,10 +31,12 @@ export function BookListItem(props) {
             )
     };
 
+    // function to handle deleting book from db when delete button is clicked
     const handleDeleteBtn = event => {
         API.deleteBook(props.id)
             .then(
                 res => {
+                    // use loadBooks prop from Saved page component
                     props.loadBooks()
                     console.log(props.id)
                 }
@@ -46,11 +50,6 @@ export function BookListItem(props) {
                 <Row>
                     <Col size="xs-4 sm-2">
                         <Thumbnail src={props.image} />
-                        {/* <div className="card">
-                            <div className="img-container">
-                                <img src={props.image} alt={props.title} />
-                            </div>
-                        </div> */}
                     </Col>
                     <Col size="xs-8 sm-10">
                         <h3>{props.title}</h3>
@@ -68,6 +67,7 @@ export function BookListItem(props) {
                         >
                             View
                         </a>
+                        {/* if there is an object id render the SaveBtn component else render the DeleteBtn component */}
                         {!props.id ?
                             <SaveBtn
                                 type="success"
