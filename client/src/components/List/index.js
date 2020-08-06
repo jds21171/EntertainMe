@@ -197,7 +197,7 @@ export function MovieListItem(props) {
             title: props.title,
             release_date: props.release_date,
             description: props.overview,
-            // image: `https://image.tmdb.org/t/p/w500${props.poster_path}`,
+            image: `https://image.tmdb.org/t/p/w500${props.poster_path}`,
             link: `https://www.google.com/search?q=${props.title.trim().replace(/\s+/g, "")}`
         }).then(
             res => console.log(res)

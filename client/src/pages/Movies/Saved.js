@@ -40,7 +40,7 @@ class MoviesSaved extends Component {
                                             title={movie.title}
                                             releaseDate={movie.release_date}
                                             description={movie.overview}
-                                            // image={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                                            image={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                                             link={`https://www.google.com/search?q=${movie.title.trim().replace(/\s+/g, "")}`}
                                             id={[movie.id].toString()}
                                             loadMovies={this.loadMovies}
