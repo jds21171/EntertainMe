@@ -1,9 +1,9 @@
 import React, { Component } from "react";
-import API from "../utils/API";
-import { Container, Row, Col } from "../components/Grid";
-import { BookList, BookListItem } from "../components/List";
+import API from "../../utils/API";
+import { Container, Row, Col } from "../../components/Grid";
+import { BookList, BookListItem } from "../../components/List";
 
-class Save extends Component {
+class BooksSaved extends Component {
 
     // instantiate state for saved books
     state = {
@@ -57,4 +57,4 @@ class Save extends Component {
 
 };
 
-export default Save;
+export default BooksSaved;

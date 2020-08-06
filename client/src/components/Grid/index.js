@@ -26,3 +26,23 @@ export function Col({ size, children }) {
         </div>
     );
 }
+export function H2() {
+    return (
+        <h2 className={"text-center"}><b>Welcome!</b></h2>
+    );
+}
+export function BookH2() {
+    return (
+        <h2 className={"text-center"}><b>Top 15 Books Currently on NYT Best Sellers List</b></h2>
+    );
+}
+export function MovieH2() {
+    return (
+        <h2 className={"text-center"}><b>Top 20 Daily Trending Movies</b></h2>
+    );
+}
+export function MusicH2() {
+    return (
+        <h2 className={"text-center"}><b>Top 50 Songs on Billboard Top 100</b></h2>
+    );
+}
