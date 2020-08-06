@@ -3,9 +3,9 @@ const Schema = mongoose.Schema;
 
 const movieSchema = new Schema({
 
-    title: { type: String, required: true },
+    title: String,
     release_date: String,
-    description: String,
+    overview: String,
     // image: String,
     link: String
 });

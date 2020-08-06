@@ -6,7 +6,7 @@ import { MovieList, TrendingMovieListItem } from "../../components/List";
 class MoviesHome extends Component {
 
     state = {
-        savedTrandingMovies: []
+        savedTrendingMovies: []
     };
 
     componentDidMount() {
@@ -15,10 +15,10 @@ class MoviesHome extends Component {
 
 
     loadTrendingMovies = event => {
-        API.getTrandingMovies()
+        API.getTrendingMovies()
             .then(res => {
-                this.setState({ savedTrandingMovies: res.data.results }, function () {
-                    console.log(this.state.savedTrandingMovies);
+                this.setState({ savedTrendingMovies: res.data.results }, function () {
+                    console.log(this.state.savedTrendingMovies);
                 })
             })
             .catch(err => console.log(err))
@@ -32,13 +32,13 @@ class MoviesHome extends Component {
                         <Col size="xs-12">
                             <MovieH2 />
                             <MovieList>
-                                {this.state.savedTrandingMovies.map(movie => {
+                                {this.state.savedTrendingMovies.map(movie => {
                                     return (
                                         <TrendingMovieListItem
                                             key={movie.id}
                                             title={movie.title}
                                             releaseDate={movie.release_date}
-                                            description={movie.overview}
+                                            overview={movie.overview}
                                             image={`https://image.tmdb.org/t/p/w500` + movie.poster_path}
                                             link={`https://www.google.com/search?q=` + movie.title.trim().replace(/\s+/g, "")}
                                             id={movie.id}

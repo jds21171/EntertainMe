@@ -8,7 +8,7 @@ module.exports = {
     // function to use API from backend
     searchApi: (req, res) => {
 
-        axios.get("https://api.themoviedb.org/3/search/movie?api_key=d01285d04c8d02b5a1717fe84625e2e8&language=en-US&page=1&include_adult=true&query=")
+        axios.get("https://api.themoviedb.org/3/search/movie?api_key=d01285d04c8d02b5a1717fe84625e2e8&language=en-US&page=1&include_adult=false&query=holes")
             .then((response) => res.json(response.data.results))
             .catch(err => res.status(422).json(err))
 

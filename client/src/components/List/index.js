@@ -18,12 +18,12 @@ export function MovieList({ children }) {
 };
 
 export function TrendingMovieListItem(props) {
-    API.getTrandingMovies({
+    API.getTrendingMovies({
         title: props.title,
         release_date: props.release_date,
-        description: props.overview,
-        image: [`https://image.tmdb.org/t/p/w500` + props.poster_path],
-        link: [`https://www.google.com/search?q=` + props.title.trim().replace(/\s+/g, "")]
+        overview: props.overview,
+        image: `https://image.tmdb.org/t/p/w500${props.poster_path}`,
+        link: `https://www.google.com/search?q=${props.title.trim().replace(/\s+/g, "")}`
 
     })
         .then(
@@ -46,7 +46,7 @@ export function TrendingMovieListItem(props) {
                             Released on {props.releaseDate}
                         </p>
                         <p>
-                            {props.description}
+                            {props.overview}
                         </p>
                         <a
                             rel="noreferrer noopener"
@@ -196,73 +196,75 @@ export function MovieListItem(props) {
         API.saveMovie({
             title: props.title,
             release_date: props.release_date,
-            description: props.overview,
+            overview: props.overview,
             // image: `https://image.tmdb.org/t/p/w500${props.poster_path}`,
             link: `https://www.google.com/search?q=${props.title.trim().replace(/\s+/g, "")}`
-        }).then(
-            res => console.log(res)
-        )
+
+        })
+            .then(
+                res => console.log(res)
+            )
             .catch(
                 err => console.log(err)
             )
     };
 
-    // function to handle deleting book from db when delete button is clicked
-    const handleDeleteBtn = event => {
-        API.deleteMovie(props.id)
-            .then(
-                res => {
-                    // use loadBooks prop from Saved page component
-                    props.loadMovies()
-                    console.log(props.id)
-                }
-            )
-            .catch(err => console.log(err))
-    };
-    return (
-        <li className="list-group-item" key={props.id}>
-            <Container>
-                <Row>
-                    <Col size="xs-4 sm-2">
-                        <Thumbnail src={props.image} />
-                    </Col>
-                    <Col size="xs-8 sm-10">
-                        <h3>{props.title}</h3>
-                        <p>
-                            Released on {props.releaseDate}
-                        </p>
-                        <p>
-                            {props.description}
-                        </p>
-                        <a
-                            rel="noreferrer noopener"
-                            className="btn btn-lg btn-primary input-lg view"
-                            target="_blank"
-                            href={props.link}
-                        >
-                            View
-                        </a>
-                        {/* if there is an object id render the SaveBtn component else render the DeleteBtn component */}
-                        {!props.id ?
-                            <SaveBtn
-                                type="success"
-                                className="input-lg"
-                                onClick={handleSaveBtn}
+        // function to handle deleting book from db when delete button is clicked
+        const handleDeleteBtn = event => {
+            API.deleteMovie(props.id)
+                .then(
+                    res => {
+                        // use loadBooks prop from Saved page component
+                        props.loadMovies()
+                        console.log(props.id)
+                    }
+                )
+                .catch(err => console.log(err))
+        };
+        return (
+            <li className="list-group-item" key={props.id}>
+                <Container>
+                    <Row>
+                        <Col size="xs-4 sm-2">
+                            <Thumbnail src={props.image} />
+                        </Col>
+                        <Col size="xs-8 sm-10">
+                            <h3>{props.title}</h3>
+                            <p>
+                                Released on {props.release_date}
+                            </p>
+                            <p>
+                                {props.overview}
+                            </p>
+                            <a
+                                rel="noreferrer noopener"
+                                className="btn btn-lg btn-primary input-lg view"
+                                target="_blank"
+                                href={props.link}
                             >
-                                Save
+                                View
+                            </a>
+                            {/* if there is an object id render the SaveBtn component else render the DeleteBtn component */}
+                            {!props.id ?
+                                <SaveBtn
+                                    type="success"
+                                    className="input-lg"
+                                    onClick={handleSaveBtn}
+                                >
+                                    Save
                             </SaveBtn>
-                            :
-                            <DeleteBtn
-                                type="danger"
-                                className="input-lg"
-                                onClick={handleDeleteBtn}
-                            >
-                                Delete
+                                :
+                                <DeleteBtn
+                                    type="danger"
+                                    className="input-lg"
+                                    onClick={handleDeleteBtn}
+                                >
+                                    Delete
                             </DeleteBtn>
-                        }
-                    </Col>
-                </Row>
-            </Container>
-        </li>
-    );
+                            }
+                        </Col>
+                    </Row>
+                </Container>
+            </li>
+        );
 };

@@ -38,8 +38,8 @@ class MoviesSaved extends Component {
                                         <MovieListItem
                                             key={[movie.id].toString()}
                                             title={movie.title}
-                                            releaseDate={movie.release_date}
-                                            description={movie.overview}
+                                            release_date={movie.release_date}
+                                            overview={movie.overview}
                                             // image={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                                             link={`https://www.google.com/search?q=${movie.title.trim().replace(/\s+/g, "")}`}
                                             id={[movie.id].toString()}
