@@ -6,7 +6,7 @@ const movieSchema = new Schema({
     title: { type: String, required: true },
     release_date: String,
     description: String,
-    image: String,
+    // image: String,
     link: String
 });
 
