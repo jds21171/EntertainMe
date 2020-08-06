@@ -72,7 +72,7 @@ class MoviesSearch extends Component {
                                 {this.state.movies.map(movie => {
                                     return (
                                         <MovieListItem
-                                            key={[movie.id].toString()}
+                                            key={movie._id}
                                             title={movie.title}
                                             release_date={movie.release_date}
                                             overview={movie.overview}

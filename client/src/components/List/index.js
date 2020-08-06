@@ -222,7 +222,7 @@ export function MovieListItem(props) {
                 .catch(err => console.log(err))
         };
         return (
-            <li className="list-group-item" key={props.id}>
+            <li className="list-group-item" key={[props.id].toString()}>
                 <Container>
                     <Row>
                         <Col size="xs-4 sm-2">
