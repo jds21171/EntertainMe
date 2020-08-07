@@ -6,7 +6,7 @@ module.exports = {
     // function to use API from backend
     searchApi: (req, res) => {
 
-        axios.get("http://api.napster.com/v2.2/search?apikey=YTkxZTRhNzAtODdlNy00ZjMzLTg0MWItOTc0NmZmNjU4Yzk4&type=track&per_type_limit=20&query=happy")
+        axios.get("https://api.napster.com/v2.2/search?apikey=YTkxZTRhNzAtODdlNy00ZjMzLTg0MWItOTc0NmZmNjU4Yzk4&type=track&per_type_limit=20&query=happy")
             .then((response) => res.json(response.data))
             .catch(err => res.status(422).json(err))
 

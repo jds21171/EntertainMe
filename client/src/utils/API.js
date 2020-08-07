@@ -13,7 +13,7 @@ const movieUrl = "https://api.themoviedb.org/3/search/movie?api_key=d01285d04c8d
 // // api key = 9nz8byta68mb2nphh2xaanpb
 const trendingSongUrl = "http://api.napster.com/v2.2/tracks/top?apikey=YTkxZTRhNzAtODdlNy00ZjMzLTg0MWItOTc0NmZmNjU4Yzk4"
 // song query url
-const songUrl = "http://api.napster.com/v2.2/search?apikey=YTkxZTRhNzAtODdlNy00ZjMzLTg0MWItOTc0NmZmNjU4Yzk4&type=track&per_type_limit=20&query="
+const songUrl = "https://api.napster.com/v2.2/search?apikey=YTkxZTRhNzAtODdlNy00ZjMzLTg0MWItOTc0NmZmNjU4Yzk4&type=track&per_type_limit=20&query="
 
 export default {
     // calls googlbooks api and retrieve books based on user input
