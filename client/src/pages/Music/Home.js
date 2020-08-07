@@ -1,24 +1,26 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
 import { Container, Row, Col, MusicH2 } from "../../components/Grid";
-import { NYTBookList, NYTBookListItem } from "../../components/List";
+import { SongList, TrendingSongListItem } from "../../components/List";
 
 class MusicHome extends Component {
 
     state = {
-        savednytBooks: []
+        savedTrendingSongs: []
     };
 
     componentDidMount() {
-        this.loadNYTBooks();
+        this.loadTrendingSongs();
+        // const audioEl = document.getElementsByClassName("audio-element")[0]
+        // audioEl.play()
     };
 
 
-    loadNYTBooks = event => {
-        API.getNYTBooks()
+    loadTrendingSongs = event => {
+        API.getTrendingSongs()
             .then(res => {
-                this.setState({ savednytBooks: res.data.results.books }, function () {
-                    console.log(this.state.savednytBooks);
+                this.setState({ savedTrendingSongs: res.data.tracks }, function () {
+                    console.log(this.state.savedTrendingSongs);
                 })
             })
             .catch(err => console.log(err))
@@ -28,25 +30,26 @@ class MusicHome extends Component {
         return (
             <div>
                 <Container>
-                    <Row>
+                    <Row fluid>
                         <Col size="xs-12">
                             <MusicH2 />
-                            <NYTBookList>
-                                {this.state.savednytBooks.map(NYTbook => {
+                            <SongList>
+                                {this.state.savedTrendingSongs.map(trendingSong => {
                                     return (
-                                        <NYTBookListItem
-                                            key={NYTbook.primary_isbn10}
-                                            title={NYTbook.title}
-                                            author={NYTbook.author}
-                                            link={NYTbook.amazon_product_url}
-                                            description={NYTbook.description}
-                                            image={NYTbook.book_image}
-                                            id={NYTbook.primary_isbn10}
-                                            loadNYTBooks={this.loadNYTBooks}
+                                        <TrendingSongListItem
+                                        key={trendingSong.id}
+                                        artistName={trendingSong.artistName}
+                                        name={trendingSong.name}
+                                        albumName={trendingSong.albumName}
+                                        preview={trendingSong.previewURL}
+                                        image={`https://www.google.com/search?tbm=isch&q=${trendingSong.albumName.replace(/\s+/g, "-")} by ${trendingSong.artistName.replace(/\s+/g, "-")}`}
+                                        link={`https://www.youtube.com/search?q=${trendingSong.name.trim().replace(/\s+/g, "")}by${trendingSong.artistName.trim().replace(/\s+/g, "")}`}
+                                        id={trendingSong.id}
+                                        loadTrendingSongs={this.loadTrendingSongs}
                                         />
                                     )
                                 })}
-                            </NYTBookList>
+                            </SongList>
                         </Col>
                     </Row>
                 </Container>

@@ -3,6 +3,7 @@ const router = express.Router();
 
 const booksController = require("../controllers/booksController");
 const moviesController = require("../controllers/moviesController");
+const songsController = require("../controllers/songsController");
 
 
 router.route("/books")
@@ -25,5 +26,16 @@ router.route("/movies/:id")
     .get(moviesController.findById)
     .put(moviesController.update)
     .delete(moviesController.remove)
+
+
+    router.route("/songs")
+    .get(songsController.findAll)
+    // .get(moviesController.searchApi)
+    .post(songsController.save)
+
+router.route("/songs/:id")
+    .get(songsController.findById)
+    .put(songsController.update)
+    .delete(songsController.remove)
 
 module.exports = router;

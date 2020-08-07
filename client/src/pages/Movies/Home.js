@@ -28,7 +28,7 @@ class MoviesHome extends Component {
         return (
             <div>
                 <Container>
-                    <Row>
+                    <Row fluid>
                         <Col size="xs-12">
                             <MovieH2 />
                             <MovieList>

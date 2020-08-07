@@ -1,8 +1,6 @@
 const db = require("../models");
 const axios = require("axios");
 
-// "https://www.googleapis.com/books/v1/volumes?q=flowers+inauthor:keyes"
-
 module.exports = {
 
     // function to use API from backend

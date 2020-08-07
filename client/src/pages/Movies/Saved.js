@@ -30,7 +30,7 @@ class MoviesSaved extends Component {
         return (
             <div>
                 <Container>
-                    <Row>
+                    <Row fluid>
                         <Col size="xs-12">
                             <MovieList>
                                 {this.state.savedMovies.map(movie => {
@@ -40,8 +40,8 @@ class MoviesSaved extends Component {
                                             title={movie.title}
                                             release_date={movie.release_date}
                                             overview={movie.overview}
-                                            // image={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                                            link={`https://www.google.com/search?q=${movie.title.trim().replace(/\s+/g, "")}`}
+                                            image={movie.image}
+                                            link={movie.link}
                                             id={movie._id}
                                             loadMovies={this.loadMovies}
                                         />

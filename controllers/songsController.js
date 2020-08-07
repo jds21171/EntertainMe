@@ -6,44 +6,45 @@ module.exports = {
     // function to use API from backend
     searchApi: (req, res) => {
 
-        axios.get("https://api.themoviedb.org/3/search/movie?api_key=d01285d04c8d02b5a1717fe84625e2e8&language=en-US&page=1&include_adult=false&query=holes")
-            .then((response) => res.json(response.data.results))
+        axios.get("http://api.napster.com/v2.2/search?apikey=YTkxZTRhNzAtODdlNy00ZjMzLTg0MWItOTc0NmZmNjU4Yzk4&type=track&per_type_limit=20&query=happy")
+            .then((response) => res.json(response.data))
             .catch(err => res.status(422).json(err))
 
     },
 
-    // find all books saved in db
+    // find all Songs saved in db
     findAll: (req, res) => {
-        db.Movie
+        db.Song
             .find(req.query)
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err))
     },
     findById: (req, res) => {
-        db.Movie
+        db.Song
             .findById(req.params.id)
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err))
     },
-    // used to save a movie to the db
+    // used to save a Song to the db
     save: (req, res) => {
-        db.Movie
+        db.Song
             .create(req.body)
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err))
     },
     update: (req, res) => {
-        db.Movie
+        db.Song
             .findByIdAndUpdate({ _id: req.params.id }, req.body)
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err))
     },
-    // used to delete a movie from the db
+    // used to delete a Song from the db
     remove: (req, res) => {
-        db.Movie
+        db.Song
             .findById({ _id: req.params.id })
             .then(dbModel => dbModel.remove())
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err))
     },
+
 };

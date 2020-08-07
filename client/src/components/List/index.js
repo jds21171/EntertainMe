@@ -16,6 +16,9 @@ export function NYTBookList({ children }) {
 export function MovieList({ children }) {
     return <ul className="list-group">{children}</ul>;
 };
+export function SongList({ children }) {
+    return <ul className="list-group">{children}</ul>;
+};
 
 export function TrendingMovieListItem(props) {
     API.getTrendingMovies({
@@ -197,8 +200,8 @@ export function MovieListItem(props) {
             title: props.title,
             release_date: props.release_date,
             overview: props.overview,
-            // image: `https://image.tmdb.org/t/p/w500${props.poster_path}`,
-            link: `https://www.google.com/search?q=${props.title.trim().replace(/\s+/g, "")}`
+            image: props.image,
+            link: props.link
 
         })
             .then(
@@ -209,62 +212,204 @@ export function MovieListItem(props) {
             )
     };
 
-        // function to handle deleting book from db when delete button is clicked
-        const handleDeleteBtn = event => {
-            API.deleteMovie(props.id)
-                .then(
-                    res => {
-                        // use loadBooks prop from Saved page component
-                        props.loadMovies()
-                        console.log(props.id)
-                    }
-                )
-                .catch(err => console.log(err))
-        };
-        return (
-            <li className="list-group-item" key={[props.id].toString()}>
-                <Container>
-                    <Row>
-                        <Col size="xs-4 sm-2">
-                            <Thumbnail src={props.image} />
-                        </Col>
-                        <Col size="xs-8 sm-10">
-                            <h3>{props.title}</h3>
-                            <p>
-                                Released on {props.release_date}
-                            </p>
-                            <p>
-                                {props.overview}
-                            </p>
-                            <a
-                                rel="noreferrer noopener"
-                                className="btn btn-lg btn-primary input-lg view"
-                                target="_blank"
-                                href={props.link}
-                            >
-                                View
+    // function to handle deleting book from db when delete button is clicked
+    const handleDeleteBtn = event => {
+        API.deleteMovie(props.id)
+            .then(
+                res => {
+                    // use loadBooks prop from Saved page component
+                    props.loadMovies()
+                    console.log(props.id)
+                }
+            )
+            .catch(err => console.log(err))
+    };
+    return (
+        <li className="list-group-item" key={[props.id].toString()}>
+            <Container>
+                <Row>
+                    <Col size="xs-4 sm-2">
+                        <Thumbnail src={props.image} />
+                    </Col>
+                    <Col size="xs-8 sm-10">
+                        <h3>{props.title}</h3>
+                        <p>
+                            Released on {props.release_date}
+                        </p>
+                        <p>
+                            {props.overview}
+                        </p>
+                        <a
+                            rel="noreferrer noopener"
+                            className="btn btn-lg btn-primary input-lg view"
+                            target="_blank"
+                            href={props.link}
+                        >
+                            View
                             </a>
-                            {/* if there is an object id render the SaveBtn component else render the DeleteBtn component */}
-                            {!props.id ?
-                                <SaveBtn
-                                    type="success"
-                                    className="input-lg"
-                                    onClick={handleSaveBtn}
-                                >
-                                    Save
+                        {/* if there is an object id render the SaveBtn component else render the DeleteBtn component */}
+                        {!props.id ?
+                            <SaveBtn
+                                type="success"
+                                className="input-lg"
+                                onClick={handleSaveBtn}
+                            >
+                                Save
                             </SaveBtn>
-                                :
-                                <DeleteBtn
-                                    type="danger"
-                                    className="input-lg"
-                                    onClick={handleDeleteBtn}
-                                >
-                                    Delete
+                            :
+                            <DeleteBtn
+                                type="danger"
+                                className="input-lg"
+                                onClick={handleDeleteBtn}
+                            >
+                                Delete
                             </DeleteBtn>
-                            }
-                        </Col>
-                    </Row>
-                </Container>
-            </li>
-        );
+                        }
+                    </Col>
+                </Row>
+            </Container>
+        </li>
+    );
+};
+
+
+export function TrendingSongListItem(props) {
+    API.getTrendingSongs({
+        artistName: props.artistName,
+        name: props.name,
+        albumName: props.albumName,
+        preview: props.preview,
+        image: props.image,
+        link: props.link
+
+    })
+        .then(
+            res => console.log(res)
+        )
+        .catch(
+            err => console.log(err)
+        )
+
+    return (
+        <li className="list-group-item" key={props.id}>
+            <Container>
+                <Row>
+                    <Col size="xs-4 sm-2">
+                        <Thumbnail src={props.image} />
+                    </Col>
+                    <Col size="xs-8 sm-10">
+                        <h3>Song: {props.name}</h3>
+                        <p>
+                            Artist: {props.artistName}
+                        </p>
+                        <p>
+                            Album: {props.albumName}
+                        </p>
+                        <p>
+                            {props.image}
+                        </p>
+                        <audio className="audio-element">
+                            <source src={props.preview}></source>
+                        </audio>
+                        <a
+                            rel="noreferrer noopener"
+                            className="btn btn-lg btn-primary input-lg view"
+                            target="_blank"
+                            href={props.link}
+                        >
+                            View
+                        </a>
+                    </Col>
+                </Row>
+            </Container>
+        </li>
+    );
+};
+
+export function SongListItem(props) {
+
+    // function to handle saving book to db when save button is clicked
+    var handleSaveBtn = event => {
+
+        API.saveSong({
+            artistName: props.artistName,
+            name: props.name,
+            albumName: props.albumName,
+            preview: props.preview,
+            image: props.image,
+            link: props.link
+
+        })
+            .then(
+                res => console.log(res)
+            )
+            .catch(
+                err => console.log(err)
+            )
+    };
+
+    // function to handle deleting book from db when delete button is clicked
+    const handleDeleteBtn = event => {
+        API.deleteSong(props.id)
+            .then(
+                res => {
+                    // use loadBooks prop from Saved page component
+                    props.loadSongs()
+                    console.log(props.id)
+                }
+            )
+            .catch(err => console.log(err))
+    };
+    return (
+        <li className="list-group-item" key={props.id}>
+            <Container>
+                <Row>
+                    <Col size="xs-4 sm-2">
+                        <Thumbnail src={props.image} />
+                    </Col>
+                    <Col size="xs-8 sm-10">
+                        <h3>Song: {props.name}</h3>
+                        <p>
+                            Artist: {props.artistName}
+                        </p>
+                        <p>
+                            Album: {props.albumName}
+                        </p>
+                        <p>
+                            {props.image}
+                        </p>
+                        <audio className="audio-element">
+                            <source src={props.preview}></source>
+                        </audio>
+                        <a
+                            rel="noreferrer noopener"
+                            className="btn btn-lg btn-primary input-lg view"
+                            target="_blank"
+                            href={props.link}
+                        >
+                            View
+                        </a>
+                        {/* if there is an object id render the SaveBtn component else render the DeleteBtn component */}
+                        {!props.id ?
+                            <SaveBtn
+                                type="success"
+                                className="input-lg"
+                                onClick={handleSaveBtn}
+                            >
+                                Save
+                            </SaveBtn>
+                            :
+                            <DeleteBtn
+                                type="danger"
+                                className="input-lg"
+                                onClick={handleDeleteBtn}
+                            >
+                                Delete
+                            </DeleteBtn>
+                        }
+                    </Col>
+                </Row>
+            </Container>
+        </li>
+    );
 };

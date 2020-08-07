@@ -1,26 +1,26 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
 import { Container, Row, Col } from "../../components/Grid";
-import { BookList, BookListItem } from "../../components/List";
+import { SongList, SongListItem } from "../../components/List";
 
 class MusicSaved extends Component {
 
     // instantiate state for saved books
     state = {
-        savedBooks: [],
+        savedSongs: [],
     };
 
     // loads saved books when Saved page loads
     componentDidMount() {
-        this.loadBooks();
+        this.loadSongs();
     };
 
-    loadBooks = event => {
+    loadSongs = event => {
 
-        API.getBooks()
+        API.getSongs()
             .then(res => {
-                this.setState({ savedBooks: res.data }, function () {
-                    console.log(this.state.savedBooks);
+                this.setState({ savedSongs: res.data }, function () {
+                    console.log(this.state.savedSongs);
                 })
             })
             .catch(err => console.log(err))
@@ -30,24 +30,25 @@ class MusicSaved extends Component {
         return (
             <div>
                 <Container>
-                    <Row>
+                    <Row fluid>
                         <Col size="xs-12">
-                            <BookList>
-                                {this.state.savedBooks.map(book => {
+                            <SongList>
+                                {this.state.savedSongs.map(song => {
                                     return (
-                                        <BookListItem
-                                            key={book._id}
-                                            title={book.title}
-                                            authors={book.authors}
-                                            link={book.link}
-                                            description={book.description}
-                                            image={book.image}
-                                            id={book._id}
-                                            loadBooks={this.loadBooks}
+                                        <SongListItem
+                                            key={song._id}
+                                            artistName={song.artistName}
+                                            name={song.name}
+                                            albumName={song.albumName}
+                                            preview={song.preview}
+                                            image={song.image}
+                                            link={song.link}
+                                            id={song._id}
+                                            loadSongs={this.loadSongs}
                                         />
                                     );
                                 })}
-                            </BookList>
+                            </SongList>
                         </Col>
                     </Row>
                 </Container>

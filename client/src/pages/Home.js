@@ -28,7 +28,7 @@ class Home extends Component {
         return (
             <div>
                 <Container>
-                    <Row>
+                    <Row fluid>
                         <Col size="xs-12">
                             <H2 />
                             {/* <NYTBookList>

@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
 import { Container, Row, Col } from "../../components/Grid";
-import { BookList, BookListItem } from "../../components/List";
+import { SongList, SongListItem } from "../../components/List";
 import { Input, SearchButton } from "../../components/Input";
 
 class MusicSearch extends Component {
 
     // instatiate state for list of books retrieved from googlebooks api and bookSearch value
     state = {
-        books: [],
-        bookSearch: ""
+        songs: [],
+        songSearch: ""
     };
 
     handleInputChange = event => {
@@ -24,10 +24,10 @@ class MusicSearch extends Component {
         event.preventDefault();
 
         // calls googlebooks api and returns searched book when search button is clicked
-        API.searchBooks(this.state.bookSearch)
+        API.searchSongs(this.state.songSearch)
             .then(res => {
-                this.setState({ books: res.data.items }, function () {
-                    console.log(this.state.books);
+                this.setState({ songs: res.data.search.data.tracks }, function () {
+                    console.log(this.state.songs);
                 })
             })
             .catch(err => console.log(err))
@@ -44,8 +44,8 @@ class MusicSearch extends Component {
                                     <Row>
                                         <Col size="xs-12 sm-12">
                                             <Input
-                                                name="bookSearch"
-                                                value={this.state.bookSearch}
+                                                name="songSearch"
+                                                value={this.state.songSearch}
                                                 onChange={this.handleInputChange}
                                                 placeholder="Search for a Song"
                                             />
@@ -66,22 +66,24 @@ class MusicSearch extends Component {
                             </form>
                         </Col>
                     </Row>
-                    <Row>
+                    <Row fluid>
                         <Col size="xs-12">
-                            <BookList>
-                                {this.state.books.map(book => {
+                            <SongList>
+                                {this.state.songs.map(song => {
                                     return (
-                                        <BookListItem
-                                            key={book.id}
-                                            title={book.volumeInfo.title}
-                                            authors={book.volumeInfo.authors}
-                                            link={book.volumeInfo.infoLink}
-                                            description={book.volumeInfo.description}
-                                            // if no imageLinks then use placeholder image
-                                            image={book.volumeInfo.imageLinks === undefined ? "http://siddallheatingandcooling.net/_imgstore/5/1360415/thumbnail/FSeY96wEdX_eY4XkBN2jfYnuY9A.png" : `${book.volumeInfo.imageLinks.thumbnail}`}
-                                        />);
+                                        <SongListItem
+                                        key={song.id}
+                                        artistName={song.artistName}
+                                        name={song.name}
+                                        albumName={song.albumName}
+                                        preview={song.previewURL}
+                                        image={`https://www.google.com/search?tbm=isch&q=${song.albumName.replace(/\s+/g, "-")} by ${song.artistName.replace(/\s+/g, "-")}`}
+                                        link={`https://www.youtube.com/search?q=${song.name.trim().replace(/\s+/g, "")}by${song.artistName.trim().replace(/\s+/g, "")}`}
+                                        loadSongs={this.loadSongs}
+                                        />
+                                    );
                                 })}
-                            </BookList>
+                            </SongList>
                         </Col>
                     </Row>
                 </Container>

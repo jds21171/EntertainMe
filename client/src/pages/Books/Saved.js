@@ -30,7 +30,7 @@ class BooksSaved extends Component {
         return (
             <div>
                 <Container>
-                    <Row>
+                    <Row fluid>
                         <Col size="xs-12">
                             <BookList>
                                 {this.state.savedBooks.map(book => {

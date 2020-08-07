@@ -43,6 +43,6 @@ export function MovieH2() {
 }
 export function MusicH2() {
     return (
-        <h2 className={"text-center"}><b>Top 50 Songs on Billboard Top 100</b></h2>
+        <h2 className={"text-center"}><b>Top 20 Trending Songs in the US</b></h2>
     );
 }
