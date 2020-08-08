@@ -23,6 +23,11 @@ const randomMealUrl = "https://www.themealdb.com/api/json/v1/1/random.php"
 // meal query url
 const mealUrl = "https://www.themealdb.com/api/json/v1/1/search.php?s="
 
+// random drink url
+const randomDrinkUrl = "https://www.thecocktaildb.com/api/json/v1/1/random.php"
+// drink query url
+const drinkUrl = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s="
+
 export default {
     // calls googlbooks api and retrieve books based on user input
     searchBooks: (query) => axios.get(googleUrl + query),
@@ -59,15 +64,26 @@ export default {
     // deletes a book with the given id
     deleteSong: (id) => axios.delete("/api/songs/" + id),
 
-    // gets trending songs
+    // gets random meals
     getRandomMeals: () => axios.get(randomMealUrl),
-    // searches movies via napster api
+    // searches meals via themealdb api
     searchMeals: (query) => axios.get(mealUrl + query),
-    // get all movies saved in db
+    // get all meals saved in db
     getMeals: () => axios.get("/api/meals"),
-    // saves a book to the db
+    // saves a meal to the db
     saveMeal: (mealData) => axios.post("/api/meals", mealData),
-    // deletes a book with the given id
+    // deletes a meal with the given id
     deleteMeal: (id) => axios.delete("/api/meals/" + id),
+
+    // gets random drinks
+    getRandomDrinks: () => axios.get(randomDrinkUrl),
+    // searches drinks via thecoctaildb api
+    searchDrinks: (query) => axios.get(drinkUrl + query),
+    // get all drinks saved in db
+    getDrinks: () => axios.get("/api/drinks"),
+    // saves a drink to the db
+    saveDrink: (drinkData) => axios.post("/api/drinks", drinkData),
+    // deletes a drink with the given id
+    deleteDrink: (id) => axios.delete("/api/drinks/" + id),
 
 };

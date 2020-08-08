@@ -42,8 +42,8 @@ class MusicHome extends Component {
                                         name={trendingSong.name}
                                         albumName={trendingSong.albumName}
                                         preview={trendingSong.previewURL}
-                                        image={`https://www.google.com/search?tbm=isch&q=${trendingSong.albumName.replace(/\s+/g, "-")} by ${trendingSong.artistName.replace(/\s+/g, "-")}`}
-                                        link={`https://www.youtube.com/search?q=${trendingSong.name.trim().replace(/\s+/g, "")}by${trendingSong.artistName.trim().replace(/\s+/g, "")}`}
+                                        image={`https://www.google.com/search?tbm=isch&q=${trendingSong.albumName.replace(/\s+/g, "+")}+by+${trendingSong.artistName.replace(/\s+/g, "+")}`}
+                                        link={`https://www.youtube.com/search?q=${trendingSong.name.trim().replace(/\s+/g, "+")} by ${trendingSong.artistName.trim().replace(/\s+/g, "+")}`}
                                         id={trendingSong.id}
                                         loadTrendingSongs={this.loadTrendingSongs}
                                         />

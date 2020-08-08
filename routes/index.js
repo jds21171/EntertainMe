@@ -5,6 +5,7 @@ const booksController = require("../controllers/booksController");
 const moviesController = require("../controllers/moviesController");
 const songsController = require("../controllers/songsController");
 const mealsController = require("../controllers/mealsController");
+const drinksController = require("../controllers/drinksController");
 
 
 router.route("/books")
@@ -49,5 +50,16 @@ router.route("/meals/:id")
     .get(mealsController.findById)
     .put(mealsController.update)
     .delete(mealsController.remove)
+
+
+router.route("/drinks")
+    .get(drinksController.findAll)
+    // .get(moviesController.searchApi)
+    .post(drinksController.save)
+
+router.route("/drinks/:id")
+    .get(drinksController.findById)
+    .put(drinksController.update)
+    .delete(drinksController.remove)
 
 module.exports = router;

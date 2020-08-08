@@ -22,6 +22,9 @@ export function SongList({ children }) {
 export function MealList({ children }) {
     return <ul className="list-group">{children}</ul>;
 };
+export function DrinkList({ children }) {
+    return <ul className="list-group">{children}</ul>;
+};
 
 export function TrendingMovieListItem(props) {
     API.getTrendingMovies({
@@ -544,6 +547,185 @@ export function MealListItem(props) {
                             href={props.strYoutube}
                         >
                             Watch Along
+                        </a>
+                        {/* if there is an object id render the SaveBtn component else render the DeleteBtn component */}
+                        {!props.id ?
+                            <SaveBtn
+                                type="success"
+                                className="input-lg"
+                                onClick={handleSaveBtn}
+                            >
+                                Save
+                        </SaveBtn>
+                            :
+                            <DeleteBtn
+                                type="danger"
+                                className="input-lg"
+                                onClick={handleDeleteBtn}
+                            >
+                                Delete
+                        </DeleteBtn>
+                        }
+                    </Col>
+                </Row>
+            </Container>
+        </li>
+    );
+};
+
+export function RandomDrinkListItem(props) {
+    API.getRandomDrinks({
+        strIngredient1: props.strIngredient1,
+        strIngredient2: props.strIngredient2,
+        strIngredient3: props.strIngredient3,
+        strIngredient4: props.strIngredient4,
+        strIngredient5: props.strIngredient5,
+        strMeasure1: props.strMeasure1,
+        strMeasure2: props.strMeasure2,
+        strMeasure3: props.strMeasure3,
+        strMeasure4: props.strMeasure4,
+        strMeasure5: props.strMeasure5,
+        strDrinkThumb: props.strDrinkThumb,
+        strInstructions: props.strInstructions,
+        strDrink: props.strDrink,
+        link: props.link
+
+    })
+        .then(
+            res => console.log(res)
+        )
+        .catch(
+            err => console.log(err)
+        )
+
+    return (
+        <li className="list-group-item" key={props.id}>
+            <Container>
+                <Row>
+                    <Col size="xs-4 sm-2">
+                        <Thumbnail src={props.strDrinkThumb} />
+                    </Col>
+                    <Col size="xs-8 sm-10">
+                        <h3>Name: {props.strDrink}</h3>
+                        <p>
+                            Step 1: {props.strMeasure1} - {props.strIngredient1}
+                        </p>
+                        <p>
+                            Step 2: {props.strMeasure2} - {props.strIngredient2}
+                        </p>
+                        <p>
+                            Step 3: {props.strMeasure3} - {props.strIngredient3}
+                        </p>
+                        <p>
+                            Step 4: {props.strMeasure4} - {props.strIngredient4}
+                        </p>
+                        <p>
+                            Step 5: {props.strMeasure5} - {props.strIngredient5}
+
+                        </p>
+                        <p>
+                            Step 6: {props.strMeasure6} - {props.strIngredient6}
+
+                        </p>
+                        <p>
+                            Instructions: {props.strInstructions}
+                        </p>
+                        <a
+                            rel="noreferrer noopener"
+                            className="btn btn-lg btn-primary input-lg view"
+                            target="_blank"
+                            href={props.link}
+                        >
+                            View
+                        </a>
+                    </Col>
+                </Row>
+            </Container>
+        </li>
+    );
+};
+
+export function DrinkListItem(props) {
+
+    // function to handle saving song to db when save button is clicked
+    var handleSaveBtn = event => {
+        API.saveDrink({
+            strIngredient1: props.strIngredient1,
+            strIngredient2: props.strIngredient2,
+            strIngredient3: props.strIngredient3,
+            strIngredient4: props.strIngredient4,
+            strIngredient5: props.strIngredient5,
+            strMeasure1: props.strMeasure1,
+            strMeasure2: props.strMeasure2,
+            strMeasure3: props.strMeasure3,
+            strMeasure4: props.strMeasure4,
+            strMeasure5: props.strMeasure5,
+            strDrinkThumb: props.strDrinkThumb,
+            strInstructions: props.strInstructions,
+            strDrink: props.strDrink,
+            link: props.link
+
+        })
+            .then(
+                res => console.log(res)
+            )
+            .catch(
+                err => console.log(err)
+            )
+    };
+
+    // function to handle deleting song from db when delete button is clicked
+    const handleDeleteBtn = event => {
+        API.deleteDrink(props.id)
+            .then(
+                res => {
+                    // use loadSongs prop from Saved page component
+                    props.loadDrinks()
+                    console.log(props.id)
+                }
+            )
+            .catch(err => console.log(err))
+    };
+
+    return (
+        <li className="list-group-item" key={props.id}>
+            <Container>
+                <Row>
+                    <Col size="xs-4 sm-2">
+                        <Thumbnail src={props.strDrinkThumb} />
+                    </Col>
+                    <Col size="xs-8 sm-10">
+                        <h3>Name: {props.strDrink}</h3>
+                        <p>
+                            Step 1: {props.strMeasure1} - {props.strIngredient1}
+                        </p>
+                        <p>
+                            Step 2: {props.strMeasure2} - {props.strIngredient2}
+                        </p>
+                        <p>
+                            Step 3: {props.strMeasure3} - {props.strIngredient3}
+                        </p>
+                        <p>
+                            Step 4: {props.strMeasure4} - {props.strIngredient4}
+                        </p>
+                        <p>
+                            Step 5: {props.strMeasure5} - {props.strIngredient5}
+
+                        </p>
+                        <p>
+                            Step 6: {props.strMeasure6} - {props.strIngredient6}
+
+                        </p>
+                        <p>
+                            Instructions: {props.strInstructions}
+                        </p>
+                        <a
+                            rel="noreferrer noopener"
+                            className="btn btn-lg btn-primary input-lg view"
+                            target="_blank"
+                            href={props.link}
+                        >
+                            View
                         </a>
                         {/* if there is an object id render the SaveBtn component else render the DeleteBtn component */}
                         {!props.id ?

@@ -77,7 +77,7 @@ class MoviesSearch extends Component {
                                             release_date={movie.release_date}
                                             overview={movie.overview}
                                             image={movie.poster_path === undefined ? "http://siddallheatingandcooling.net/_imgstore/5/1360415/thumbnail/FSeY96wEdX_eY4XkBN2jfYnuY9A.png" : `${`https://image.tmdb.org/t/p/w500${movie.poster_path}`}`}
-                                            link={`https://www.google.com/search?q=${movie.title.trim().replace(/\s+/g, "")}`}
+                                            link={`https://www.google.com/search?q=${movie.title.trim().replace(/\s+/g, "+")}`}
                                         />
                                     )
                                 })}

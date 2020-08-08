@@ -51,3 +51,8 @@ export function MealH2() {
         <h2 className={"text-center"}><b>A Random Meal Generated Just for You!</b></h2>
     );
 }
+export function DrinkH2() {
+    return (
+        <h2 className={"text-center"}><b>A Random Drink Generated Just for You!</b></h2>
+    );
+}

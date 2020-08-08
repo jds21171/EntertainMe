@@ -39,8 +39,8 @@ class MoviesHome extends Component {
                                             title={movie.title}
                                             releaseDate={movie.release_date}
                                             overview={movie.overview}
-                                            image={`https://image.tmdb.org/t/p/w500` + movie.poster_path}
-                                            link={`https://www.google.com/search?q=` + movie.title.trim().replace(/\s+/g, "")}
+                                            image={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                                            link={`https://www.google.com/search?q=${movie.title.trim().replace(/\s+/g, "+")}+movie`}
                                             id={movie.id}
                                             loadTrendingMovies={this.loadTrendingMovies}
                                         />
