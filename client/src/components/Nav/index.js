@@ -42,8 +42,8 @@ function Nav() {
                 </NavDropdown>
                 <li className="nav-item logout">
                     <Link
-                        to="/saved"
-                        className={window.location.pathname === "/saved" ? "nav-link" : "nav-link"}
+                        to="/"
+                        className={window.location.pathname === "/" ? "nav-link" : "nav-link"}
                     >
                         Logout <i class="fas fa-sign-out-alt"></i>
                     </Link>

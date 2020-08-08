@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
 import { Container, Row, Col } from "../../components/Grid";
-import { MealList, MealListItem } from "../../components/List";
+import { List, MealListItem } from "../../components/List";
 
 class MealsSaved extends Component {
 
@@ -32,7 +32,7 @@ class MealsSaved extends Component {
                 <Container>
                     <Row fluid>
                         <Col size="xs-12">
-                            <MealList>
+                            <List>
                                 {this.state.savedMeals.map(meal => {
                                     return (
                                         <MealListItem
@@ -49,7 +49,7 @@ class MealsSaved extends Component {
                                         />
                                     )
                                 })}
-                            </MealList>
+                            </List>
                         </Col>
                     </Row>
                 </Container>

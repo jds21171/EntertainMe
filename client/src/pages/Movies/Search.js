@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
 import { Container, Row, Col } from "../../components/Grid";
-import { MovieList, MovieListItem } from "../../components/List";
+import { List, MovieListItem } from "../../components/List";
 import { Input, SearchButton } from "../../components/Input";
 
 class MoviesSearch extends Component {
@@ -68,7 +68,7 @@ class MoviesSearch extends Component {
                     </Row>
                     <Row>
                         <Col size="xs-12">
-                            <MovieList>
+                            <List>
                                 {this.state.movies.map(movie => {
                                     return (
                                         <MovieListItem
@@ -81,7 +81,7 @@ class MoviesSearch extends Component {
                                         />
                                     )
                                 })}
-                            </MovieList>
+                            </List>
                         </Col>
                     </Row>
                 </Container>

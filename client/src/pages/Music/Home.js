@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
 import { Container, Row, Col, MusicH2 } from "../../components/Grid";
-import { SongList, TrendingSongListItem } from "../../components/List";
+import { List, TrendingSongListItem } from "../../components/List";
 
 class MusicHome extends Component {
 
@@ -33,7 +33,7 @@ class MusicHome extends Component {
                     <Row fluid>
                         <Col size="xs-12">
                             <MusicH2 />
-                            <SongList>
+                            <List>
                                 {this.state.savedTrendingSongs.map(trendingSong => {
                                     return (
                                         <TrendingSongListItem
@@ -49,7 +49,7 @@ class MusicHome extends Component {
                                         />
                                     )
                                 })}
-                            </SongList>
+                            </List>
                         </Col>
                     </Row>
                 </Container>

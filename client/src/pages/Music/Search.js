@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
 import { Container, Row, Col } from "../../components/Grid";
-import { SongList, SongListItem } from "../../components/List";
+import { List, SongListItem } from "../../components/List";
 import { Input, SearchButton } from "../../components/Input";
 
 class MusicSearch extends Component {
@@ -68,21 +68,21 @@ class MusicSearch extends Component {
                     </Row>
                     <Row fluid>
                         <Col size="xs-12">
-                            <SongList>
+                            <List>
                                 {this.state.songs.map(song => {
                                     return (
                                         <SongListItem
-                                        key={song.id}
-                                        artistName={song.artistName}
-                                        name={song.name}
-                                        albumName={song.albumName}
-                                        preview={song.previewURL}
-                                        image={`https://www.google.com/search?tbm=isch&q=${song.albumName.replace(/\s+/g, "+")}+by+${song.artistName.replace(/\s+/g, "+")}`}
-                                        link={`https://www.youtube.com/search?q=${song.name.trim().replace(/\s+/g, "+")}by${song.artistName.trim().replace(/\s+/g, "+")}`}
+                                            key={song.id}
+                                            artistName={song.artistName}
+                                            name={song.name}
+                                            albumName={song.albumName}
+                                            preview={song.previewURL}
+                                            image={`https://www.google.com/search?tbm=isch&q=${song.albumName.replace(/\s+/g, "+")}+by+${song.artistName.replace(/\s+/g, "+")}`}
+                                            link={`https://www.youtube.com/search?q=${song.name.trim().replace(/\s+/g, "+")}by${song.artistName.trim().replace(/\s+/g, "+")}`}
                                         />
                                     );
                                 })}
-                            </SongList>
+                            </List>
                         </Col>
                     </Row>
                 </Container>

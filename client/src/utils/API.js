@@ -10,9 +10,8 @@ const trendingMovieUrl = "https://api.themoviedb.org/3/trending/movie/day?api_ke
 const movieUrl = "https://api.themoviedb.org/3/search/movie?api_key=d01285d04c8d02b5a1717fe84625e2e8&language=en-US&page=1&include_adult=false&query="
 
 // event api
-// const eventUrl = "http://api.amp.active.com/search?near=Atlanta,GA,US&api_key=q5h5p4f6bgfchqm56xrzmud9"
-// // api key = q5h5p4f6bgfchqm56xrzmud9
-// // api key = 9nz8byta68mb2nphh2xaanpb
+const eventUrl = "https://app.ticketmaster.com/discovery/v2/events.json?size=20&apikey=iGzOUmwiYXWmuhlcs8HdUyG7LnBJntKa&city="
+// api key 	iGzOUmwiYXWmuhlcs8HdUyG7LnBJntKa
 
 const trendingSongUrl = "https://api.napster.com/v2.2/tracks/top?apikey=YTkxZTRhNzAtODdlNy00ZjMzLTg0MWItOTc0NmZmNjU4Yzk4"
 // song query url
@@ -85,5 +84,8 @@ export default {
     saveDrink: (drinkData) => axios.post("/api/drinks", drinkData),
     // deletes a drink with the given id
     deleteDrink: (id) => axios.delete("/api/drinks/" + id),
+
+    // event url shows events in/near entered city via ticketmaster api
+    searchEvents: (query) => axios.get(eventUrl + query)
 
 };

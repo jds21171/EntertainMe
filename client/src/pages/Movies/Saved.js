@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
 import { Container, Row, Col } from "../../components/Grid";
-import { MovieList, MovieListItem } from "../../components/List";
+import { List, MovieListItem } from "../../components/List";
 
 class MoviesSaved extends Component {
 
@@ -32,7 +32,7 @@ class MoviesSaved extends Component {
                 <Container>
                     <Row fluid>
                         <Col size="xs-12">
-                            <MovieList>
+                            <List>
                                 {this.state.savedMovies.map(movie => {
                                     return (
                                         <MovieListItem
@@ -47,7 +47,7 @@ class MoviesSaved extends Component {
                                         />
                                     )
                                 })}
-                            </MovieList>
+                            </List>
                         </Col>
                     </Row>
                 </Container>

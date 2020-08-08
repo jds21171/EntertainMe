@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
 import { Container, Row, Col } from "../../components/Grid";
-import { BookList, BookListItem } from "../../components/List";
+import { List, BookListItem } from "../../components/List";
 import { Input, SearchButton } from "../../components/Input";
 
 class BooksSearch extends Component {
@@ -68,7 +68,7 @@ class BooksSearch extends Component {
                     </Row>
                     <Row>
                         <Col size="xs-12">
-                            <BookList>
+                            <List>
                                 {this.state.books.map(book => {
                                     return (
                                         <BookListItem
@@ -81,7 +81,7 @@ class BooksSearch extends Component {
                                             image={book.volumeInfo.imageLinks === undefined ? "http://siddallheatingandcooling.net/_imgstore/5/1360415/thumbnail/FSeY96wEdX_eY4XkBN2jfYnuY9A.png" : `${book.volumeInfo.imageLinks.thumbnail}`}
                                         />);
                                 })}
-                            </BookList>
+                            </List>
                         </Col>
                     </Row>
                 </Container>

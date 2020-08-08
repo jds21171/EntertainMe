@@ -7,22 +7,7 @@ import DeleteBtn from "../DeleteBtn"
 import "./style.css"
 
 // BookList renders a bootstrap list item
-export function BookList({ children }) {
-    return <ul className="list-group">{children}</ul>;
-};
-export function NYTBookList({ children }) {
-    return <ul className="list-group">{children}</ul>;
-};
-export function MovieList({ children }) {
-    return <ul className="list-group">{children}</ul>;
-};
-export function SongList({ children }) {
-    return <ul className="list-group">{children}</ul>;
-};
-export function MealList({ children }) {
-    return <ul className="list-group">{children}</ul>;
-};
-export function DrinkList({ children }) {
+export function List({ children }) {
     return <ul className="list-group">{children}</ul>;
 };
 
@@ -745,6 +730,66 @@ export function DrinkListItem(props) {
                                 Delete
                         </DeleteBtn>
                         }
+                    </Col>
+                </Row>
+            </Container>
+        </li>
+    );
+};
+
+export function EventListItem(props) {
+    API.searchEvents({
+        name: props.name,
+        city: props.city,
+        state: props.state,
+        venue_address: props.venue_address,
+        venue_name: props.venue_name,
+        image: props.image,
+        description: props.description,
+        date: props.date,
+        time: props.time,
+        url: props.url
+
+    })
+        .then(
+            res => console.log(res)
+        )
+        .catch(
+            err => console.log(err)
+        )
+
+    return (
+        <li className="list-group-item" key={props.id}>
+            <Container>
+                <Row>
+                    <Col size="xs-4 sm-2">
+                        <Thumbnail src={props.image} />
+                    </Col>
+                    <Col size="xs-8 sm-10">
+                        <h3>{props.name}</h3>
+                        <p>
+                            Location: {props.city}, {props.state}
+                        </p>
+                        <p>
+                            Date: {props.date}, @ {props.time}
+                        </p>
+                        <p>
+                            Description: {props.description}
+                        </p>
+                        <p>
+                            Venue: {props.venue_name}
+                        </p>
+                        <p>
+                            Venue Address: {props.venue_address}
+                        </p>
+                        <a
+                            rel="noreferrer noopener"
+                            className="btn btn-lg btn-primary input-lg view"
+                            target="_blank"
+                            href={props.url}
+                        >
+                            View
+                        </a>
                     </Col>
                 </Row>
             </Container>
