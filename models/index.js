@@ -1,5 +1,6 @@
 module.exports = {
     Book: require('./book'),
     Movie: require('./movie'),
-    Song: require('./song')
+    Song: require('./song'),
+    Meal: require('./meal')
 };

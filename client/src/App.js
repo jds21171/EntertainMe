@@ -16,6 +16,10 @@ import MoviesHome from "./pages/Movies/Home";
 import MusicSearch from "./pages/Music/Search";
 import MusicSaved from "./pages/Music/Saved";
 import MusicHome from "./pages/Music/Home";
+// Meal pages for application
+import MealsSearch from "./pages/Meals/Search";
+import MealsSaved from "./pages/Meals/Saved";
+import MealsHome from "./pages/Meals/Home";
 
 import Jumbotron from "./components/Jumbotron";
 
@@ -50,6 +54,13 @@ class App extends Component {
             <Route exact path="/music/search" component={MusicSearch} />
             {/* renders the Home Saved page when "/music/saved" route is hit */}
             <Route exact path="/music/saved" component={MusicSaved} />
+
+            {/* renders the Home Search page when "/meal" route is hit */}
+            <Route exact path="/meals" component={MealsHome} />
+            {/* renders the Home Search page when "/meal/search" route is hit */}
+            <Route exact path="/meals/search" component={MealsSearch} />
+            {/* renders the Home Saved page when "/meal/saved" route is hit */}
+            <Route exact path="/meals/saved" component={MealsSaved} />
           </Switch>
         </div>
       </Router>

@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
 import { Container, Row, Col } from "../../components/Grid";
-import { MovieList, MovieListItem } from "../../components/List";
+import { MealList, MealListItem } from "../../components/List";
 import { Input, SearchButton } from "../../components/Input";
 
-class MoviesSearch extends Component {
+class MealsSearch extends Component {
 
     // instatiate state for list of books retrieved from googlebooks api and bookSearch value
     state = {
-        movies: [],
-        movieSearch: ""
+        meals: [],
+        mealSearch: ""
     };
 
     handleInputChange = event => {
@@ -24,10 +24,10 @@ class MoviesSearch extends Component {
         event.preventDefault();
 
         // calls googlebooks api and returns searched book when search button is clicked
-        API.searchMovies(this.state.movieSearch)
+        API.searchMeals(this.state.mealSearch)
             .then(res => {
-                this.setState({ movies: res.data.results }, function () {
-                    console.log(this.state.movies);
+                this.setState({ meals: res.data.meals }, function () {
+                    console.log(this.state.meals);
                 })
             })
             .catch(err => console.log(err))
@@ -44,10 +44,10 @@ class MoviesSearch extends Component {
                                     <Row>
                                         <Col size="xs-12 sm-12">
                                             <Input
-                                                name="movieSearch"
-                                                value={this.state.movieSearch}
+                                                name="mealSearch"
+                                                value={this.state.mealSearch}
                                                 onChange={this.handleInputChange}
-                                                placeholder="Search for a Movie"
+                                                placeholder="Search for a Meal"
                                             />
                                         </Col>
                                     </Row>
@@ -66,22 +66,24 @@ class MoviesSearch extends Component {
                             </form>
                         </Col>
                     </Row>
-                    <Row>
+                    <Row fluid>
                         <Col size="xs-12">
-                            <MovieList>
-                                {this.state.movies.map(movie => {
+                            <MealList>
+                                {this.state.meals.map(meal => {
                                     return (
-                                        <MovieListItem
-                                            key={movie._id}
-                                            title={movie.title}
-                                            release_date={movie.release_date}
-                                            overview={movie.overview}
-                                            image={movie.poster_path === undefined ? "http://siddallheatingandcooling.net/_imgstore/5/1360415/thumbnail/FSeY96wEdX_eY4XkBN2jfYnuY9A.png" : `${`https://image.tmdb.org/t/p/w500${movie.poster_path}`}`}
-                                            link={`https://www.google.com/search?q=${movie.title.trim().replace(/\s+/g, "")}`}
+                                        <MealListItem
+                                            key={meal.idMeal}
+                                            strMeal={meal.strMeal}
+                                            strArea={meal.strArea}
+                                            strCategory={meal.strCategory}
+                                            strInstructions={meal.strInstructions}
+                                            strMealThumb={meal.strMealThumb}
+                                            strSource={meal.strSource}
+                                            strYoutube={meal.strYoutube}
                                         />
-                                    )
+                                    );
                                 })}
-                            </MovieList>
+                            </MealList>
                         </Col>
                     </Row>
                 </Container>
@@ -91,4 +93,4 @@ class MoviesSearch extends Component {
 
 };
 
-export default MoviesSearch;
+export default MealsSearch;

@@ -19,6 +19,9 @@ export function MovieList({ children }) {
 export function SongList({ children }) {
     return <ul className="list-group">{children}</ul>;
 };
+export function MealList({ children }) {
+    return <ul className="list-group">{children}</ul>;
+};
 
 export function TrendingMovieListItem(props) {
     API.getTrendingMovies({
@@ -328,7 +331,7 @@ export function TrendingSongListItem(props) {
 
 export function SongListItem(props) {
 
-    // function to handle saving book to db when save button is clicked
+    // function to handle saving song to db when save button is clicked
     var handleSaveBtn = event => {
 
         API.saveSong({
@@ -348,12 +351,12 @@ export function SongListItem(props) {
             )
     };
 
-    // function to handle deleting book from db when delete button is clicked
+    // function to handle deleting song from db when delete button is clicked
     const handleDeleteBtn = event => {
         API.deleteSong(props.id)
             .then(
                 res => {
-                    // use loadBooks prop from Saved page component
+                    // use loadSongs prop from Saved page component
                     props.loadSongs()
                     console.log(props.id)
                 }
@@ -406,6 +409,159 @@ export function SongListItem(props) {
                             >
                                 Delete
                             </DeleteBtn>
+                        }
+                    </Col>
+                </Row>
+            </Container>
+        </li>
+    );
+};
+
+export function RandomMealListItem(props) {
+    API.getRandomMeals({
+        strMeal: props.strMeal,
+        strArea: props.strArea,
+        strCategory: props.strCategory,
+        strInstructions: props.strInstructions,
+        strMealThumb: props.strMealThumb,
+        strYoutube: props.strYoutube,
+        strSource: props.strSource
+
+    })
+        .then(
+            res => console.log(res)
+        )
+        .catch(
+            err => console.log(err)
+        )
+
+    return (
+        <li className="list-group-item" key={props.id}>
+            <Container>
+                <Row>
+                    <Col size="xs-4 sm-2">
+                        <Thumbnail src={props.strMealThumb} />
+                    </Col>
+                    <Col size="xs-8 sm-10">
+                        <h3>Name: {props.strMeal}</h3>
+                        <p>
+                            Area: {props.strArea}
+                        </p>
+                        <p>
+                            Category: {props.strCategory}
+                        </p>
+                        <p>
+                            Instructions: {props.strInstructions}
+                        </p>
+                        <a
+                            rel="noreferrer noopener"
+                            className="btn btn-lg btn-primary input-lg view"
+                            target="_blank"
+                            href={props.strSource}
+                        >
+                            Ingredients
+                        </a>
+                        <a
+                            rel="noreferrer noopener"
+                            className="btn btn-lg btn-primary input-lg view"
+                            target="_blank"
+                            href={props.strYoutube}
+                        >
+                            Watch Along
+                        </a>
+                    </Col>
+                </Row>
+            </Container>
+        </li>
+    );
+};
+
+export function MealListItem(props) {
+
+    // function to handle saving song to db when save button is clicked
+    var handleSaveBtn = event => {
+        API.saveMeal({
+            strMeal: props.strMeal,
+            strArea: props.strArea,
+            strCategory: props.strCategory,
+            strInstructions: props.strInstructions,
+            strMealThumb: props.strMealThumb,
+            strSource: props.strSource,
+            strYoutube: props.strYoutube
+
+        })
+            .then(
+                res => console.log(res)
+            )
+            .catch(
+                err => console.log(err)
+            )
+    };
+
+    // function to handle deleting song from db when delete button is clicked
+    const handleDeleteBtn = event => {
+        API.deleteMeal(props.id)
+            .then(
+                res => {
+                    // use loadSongs prop from Saved page component
+                    props.loadMeals()
+                    console.log(props.id)
+                }
+            )
+            .catch(err => console.log(err))
+    };
+
+    return (
+        <li className="list-group-item" key={props.id}>
+            <Container>
+                <Row>
+                    <Col size="xs-4 sm-2">
+                        <Thumbnail src={props.strMealThumb} />
+                    </Col>
+                    <Col size="xs-8 sm-10">
+                        <h3>Name: {props.strMeal}</h3>
+                        <p>
+                            Area: {props.strArea}
+                        </p>
+                        <p>
+                            Category: {props.strCategory}
+                        </p>
+                        <p>
+                            Instructions: {props.strInstructions}
+                        </p>
+                        <a
+                            rel="noreferrer noopener"
+                            className="btn btn-lg btn-primary input-lg view"
+                            target="_blank"
+                            href={props.strSource}
+                        >
+                            Ingredients
+                        </a>
+                        <a
+                            rel="noreferrer noopener"
+                            className="btn btn-lg btn-primary input-lg view"
+                            target="_blank"
+                            href={props.strYoutube}
+                        >
+                            Watch Along
+                        </a>
+                        {/* if there is an object id render the SaveBtn component else render the DeleteBtn component */}
+                        {!props.id ?
+                            <SaveBtn
+                                type="success"
+                                className="input-lg"
+                                onClick={handleSaveBtn}
+                            >
+                                Save
+                        </SaveBtn>
+                            :
+                            <DeleteBtn
+                                type="danger"
+                                className="input-lg"
+                                onClick={handleDeleteBtn}
+                            >
+                                Delete
+                        </DeleteBtn>
                         }
                     </Col>
                 </Row>

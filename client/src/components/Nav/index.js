@@ -30,6 +30,11 @@ function Nav() {
                     <NavDropdown.Item href="/music/search">Search <i class="fas fa-search"></i></NavDropdown.Item>
                     <NavDropdown.Item href="/music/saved">Saved <i class="far fa-save"></i></NavDropdown.Item>
                 </NavDropdown>
+                <NavDropdown title="Meals" id="basic-nav-dropdown">
+                    <NavDropdown.Item href="/meals">Meals Home <i class="fas fa-utensils"></i></NavDropdown.Item>
+                    <NavDropdown.Item href="/meals/search">Search <i class="fas fa-search"></i></NavDropdown.Item>
+                    <NavDropdown.Item href="/meals/saved">Saved <i class="far fa-save"></i></NavDropdown.Item>
+                </NavDropdown>
                 <li className="nav-item logout">
                     <Link
                         to="/saved"

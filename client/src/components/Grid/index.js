@@ -46,3 +46,8 @@ export function MusicH2() {
         <h2 className={"text-center"}><b>Top 20 Trending Songs in the US</b></h2>
     );
 }
+export function MealH2() {
+    return (
+        <h2 className={"text-center"}><b>A Random Meal Generated Just for You!</b></h2>
+    );
+}
