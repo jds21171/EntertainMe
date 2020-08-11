@@ -28,14 +28,11 @@ app.use((req, res, next) => {
 app.use(routes);
 
 if (process.env.NODE_ENV === "production") {
-	app.use(express.static("client/build"));
+	app.use('/static', express.static(path.join(__dirname, "client/build")));
 }
 
 // UNCOMMENT THIS WHEN READY TO USE ATLAS
 mongoose.connect(url, { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true},()=> console.log("Connected to Atlas Database"));
-
-// REMOVE THIS WHEN READY TO USE ATLAS
-// mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/quizapp", { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true},()=> console.log(`Connected to Local MongoDB Database`));
 
 app.listen(PORT, () => {
 	console.log(`Server is listening on http://localhost:${PORT}`);
