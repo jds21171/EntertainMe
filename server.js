@@ -31,18 +31,12 @@ if (process.env.NODE_ENV === "production") {
   // Define API routes here
 app.use(routes);
   
-  
   // Send every other request to the React app
   // Define any API routes before this runs
   app.get("*", (req, res) => {
 	res.sendFile(path.join(__dirname, "./client/build/index.html"));
   });
 
-// if (process.env.NODE_ENV === "production") {
-// app.use('/static', express.static(path.join(__dirname, "client/build")));
-// }
-
-// UNCOMMENT THIS WHEN READY TO USE ATLAS
 mongoose.connect(url, { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true }, () => console.log("Connected to Atlas Database"));
 
 app.listen(PORT, () => {
