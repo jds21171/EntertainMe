@@ -30,9 +30,17 @@ app.use(routes);
 if (process.env.NODE_ENV === "production") {
 	app.use('/static', express.static(path.join(__dirname, "client/build")));
 }
+app.get('*', function (_, res) {
+	res.sendFile(path.join('/app/client/build/index.html'), function (err) {
+		if (err) {
+			console.log(err);
+			res.status(500).send(err);
+		}
+	});
+});
 
 // UNCOMMENT THIS WHEN READY TO USE ATLAS
-mongoose.connect(url, { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true},()=> console.log("Connected to Atlas Database"));
+mongoose.connect(url, { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true }, () => console.log("Connected to Atlas Database"));
 
 app.listen(PORT, () => {
 	console.log(`Server is listening on http://localhost:${PORT}`);
