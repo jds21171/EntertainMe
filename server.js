@@ -3,7 +3,7 @@ const session = require('express-session');
 const passport = require("./config/passport");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const url = "mongodb+srv://Josh:3LdQWBZsGitPtk42@entertainme.qtbie.mongodb.net/EntertainMe?retryWrites=true&w=majority";
+// const url = "mongodb+srv://Josh:3LdQWBZsGitPtk42@entertainme.qtbie.mongodb.net/EntertainMe?retryWrites=true&w=majority";
 const routes = require("./routes");
 
 const app = express();
@@ -37,8 +37,8 @@ app.use(routes);
 	res.sendFile(path.join(__dirname, "./client/build/index.html"));
   });
 
-mongoose.connect(url, { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true }, () => console.log("Connected to Atlas Database"));
-
+// mongoose.connect(url, { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true }, () => console.log("Connected to Atlas Database"));
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/entertainme")
 app.listen(PORT, () => {
 	console.log(`Server is listening on http://localhost:${PORT}`);
 });
