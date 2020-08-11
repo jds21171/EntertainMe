@@ -24,20 +24,23 @@ app.use((req, res, next) => {
 	console.log("req.session", req.session);
 	return next();
 });
-
+if (process.env.NODE_ENV === "production") {
+	app.use(express.static("client/build"));
+  }
+  
+  // Define API routes here
 app.use(routes);
+  
+  
+  // Send every other request to the React app
+  // Define any API routes before this runs
+  app.get("*", (req, res) => {
+	res.sendFile(path.join(__dirname, "./client/build/index.html"));
+  });
 
 // if (process.env.NODE_ENV === "production") {
-app.use('/static', express.static(path.join(__dirname, "client/build")));
+// app.use('/static', express.static(path.join(__dirname, "client/build")));
 // }
-app.get('*', function (_, res) {
-	res.sendFile(path.join('/app/client/build/index.html'), function (err) {
-		if (err) {
-			console.log(err);
-			res.status(500).send(err);
-		}
-	});
-});
 
 // UNCOMMENT THIS WHEN READY TO USE ATLAS
 mongoose.connect(url, { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true }, () => console.log("Connected to Atlas Database"));
