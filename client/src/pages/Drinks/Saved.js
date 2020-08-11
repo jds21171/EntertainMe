@@ -4,12 +4,12 @@ import { Container, Row, Col } from "../../components/Grid";
 import { List, DrinkListItem } from "../../components/List";
 
 class DrinksSaved extends Component {
-
-    // instantiate state for saved books
-    state = {
-        savedDrinks: [],
-    };
-
+    constructor(props) {
+        super(props);
+        this.state = {
+            savedDrinks: [],
+        };
+    }
     // loads saved books when Saved page loads
     componentDidMount() {
         this.loadDrinks();

@@ -4,10 +4,12 @@ import { Container, Row, Col, MovieH2 } from "../../components/Grid";
 import { List, TrendingMovieListItem } from "../../components/List";
 
 class MoviesHome extends Component {
-
-    state = {
-        savedTrendingMovies: []
-    };
+    constructor(props) {
+        super(props);
+        this.state = {
+            savedTrendingMovies: []
+        };
+    }
 
     componentDidMount() {
         this.loadTrendingMovies();

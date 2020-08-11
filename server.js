@@ -1,29 +1,42 @@
 const express = require("express");
+const session = require('express-session');
+const passport = require("./config/passport");
 const mongoose = require("mongoose");
-const apiRoutes = require("./routes/index");
-const path = require("path");
+const cors = require("cors");
+const url = "mongodb+srv://Josh:3LdQWBZsGitPtk42@entertainme.qtbie.mongodb.net/EntertainMe?retryWrites=true&w=majority";
+const routes = require("./routes");
+
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-// Define middleware here
+app.use(cors());
+
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-// Serve up static assets (usually on heroku)
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
-}
 
-// Define API routes here
-app.use('/api', apiRoutes);
+// session
+app.use(session({ secret: "study", resave: true, saveUninitialized: true }));
 
-// Send every other request to the React app
-// Define any API routes before this runs
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use((req, res, next) => {
+	console.log("req.session", req.session);
+	return next();
 });
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/googlebooks")
+app.use(routes);
+
+if (process.env.NODE_ENV === "production") {
+	app.use(express.static("client/build"));
+}
+
+// UNCOMMENT THIS WHEN READY TO USE ATLAS
+mongoose.connect(url, { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true},()=> console.log("Connected to Atlas Database"));
+
+// REMOVE THIS WHEN READY TO USE ATLAS
+// mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/quizapp", { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true},()=> console.log(`Connected to Local MongoDB Database`));
 
 app.listen(PORT, () => {
-  console.log(`🌎 ==> API server now on port ${PORT}!`);
+	console.log(`Server is listening on http://localhost:${PORT}`);
 });

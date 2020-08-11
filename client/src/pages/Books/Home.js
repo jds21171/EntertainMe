@@ -4,10 +4,12 @@ import { Container, Row, Col, BookH2 } from "../../components/Grid";
 import { List, NYTBookListItem } from "../../components/List";
 
 class BooksHome extends Component {
-
-    state = {
-        savednytBooks: []
-    };
+    constructor(props) {
+        super(props);
+        this.state = {
+            savednytBooks: []
+        };
+    }
 
     componentDidMount() {
         this.loadNYTBooks();

@@ -26,16 +26,47 @@ import DrinksSaved from "./pages/Drinks/Saved";
 import DrinksHome from "./pages/Drinks/Home";
 import Jumbotron from "./components/Jumbotron";
 
+// import api from './utils/API';
+import Login from "./pages/Login";
+import SignUp from './pages/Signup';
+
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoading: true,
+      signedIn: true
+    }
+  }
+
+  // componentDidMount = () => {
+  //   this.getUsers();
+  // }
+
+  // getUsers = async () => {
+  //   try {
+  //     const response = await api.authenticate();
+  //     if (response.status === 401) this.props.history.push("/login");
+  //     else this.setState({ signedIn: true });
+  //   } catch (err) {
+  //     console.log(err);
+  //     this.props.history.push("/login");
+  //   }
+  // }
+
   render() {
     return (
       <Router>
         <div>
-          <Nav />
+          <Nav isSignedIn={this.state.signedIn} />
           <Jumbotron />
           <Switch>
             {/* renders the Home page when "/" route is hit */}
             <Route exact path="/" component={Home} />
+            {/* renders the Login page when "/login" route is hit */}
+            <Route exact path="/login" component={Login} />
+            {/* renders the SignUp page when "/signup" route is hit */}
+            <Route exact path="/signup" component={SignUp} />
 
             {/* renders the Books Home page when "/books" route is hit */}
             <Route exact path="/books" component={BooksHome} />

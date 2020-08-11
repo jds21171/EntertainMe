@@ -5,12 +5,14 @@ import { List, MealListItem } from "../../components/List";
 import { Input, SearchButton } from "../../components/Input";
 
 class MealsSearch extends Component {
-
-    // instatiate state for list of books retrieved from googlebooks api and bookSearch value
-    state = {
-        meals: [],
-        mealSearch: ""
-    };
+    constructor(props) {
+        super(props);
+        this.state = {
+            // instatiate state for list of books retrieved from googlebooks api and bookSearch value
+            meals: [],
+            mealSearch: ""
+        };
+    }
 
     handleInputChange = event => {
         // Destructure the name and value properties off of event.target

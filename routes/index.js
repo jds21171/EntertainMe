@@ -1,65 +1,12 @@
-const express = require('express');
-const router = express.Router();
+const path = require("path");
+const router = require("express").Router();
+const apiRoutes = require("./api");
 
-const booksController = require("../controllers/booksController");
-const moviesController = require("../controllers/moviesController");
-const songsController = require("../controllers/songsController");
-const mealsController = require("../controllers/mealsController");
-const drinksController = require("../controllers/drinksController");
+// API Routes
+router.use("/api", apiRoutes);
 
-
-router.route("/books")
-    .get(booksController.findAll)
-    // .get(booksController.searchApi)
-    .post(booksController.save)
-
-router.route("/books/:id")
-    .get(booksController.findById)
-    .put(booksController.update)
-    .delete(booksController.remove)
-
-
-router.route("/movies")
-    .get(moviesController.findAll)
-    // .get(moviesController.searchApi)
-    .post(moviesController.save)
-
-router.route("/movies/:id")
-    .get(moviesController.findById)
-    .put(moviesController.update)
-    .delete(moviesController.remove)
-
-
-router.route("/songs")
-    .get(songsController.findAll)
-    // .get(moviesController.searchApi)
-    .post(songsController.save)
-
-router.route("/songs/:id")
-    .get(songsController.findById)
-    .put(songsController.update)
-    .delete(songsController.remove)
-
-
-router.route("/meals")
-    .get(mealsController.findAll)
-    // .get(moviesController.searchApi)
-    .post(mealsController.save)
-
-router.route("/meals/:id")
-    .get(mealsController.findById)
-    .put(mealsController.update)
-    .delete(mealsController.remove)
-
-
-router.route("/drinks")
-    .get(drinksController.findAll)
-    // .get(moviesController.searchApi)
-    .post(drinksController.save)
-
-router.route("/drinks/:id")
-    .get(drinksController.findById)
-    .put(drinksController.update)
-    .delete(drinksController.remove)
+router.use((req, res) =>
+  res.sendFile(path.join(__dirname, "../client/build/index.html"))
+);
 
 module.exports = router;

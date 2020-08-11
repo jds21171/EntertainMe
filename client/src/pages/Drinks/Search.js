@@ -5,12 +5,14 @@ import { List, DrinkListItem } from "../../components/List";
 import { Input, SearchButton } from "../../components/Input";
 
 class DrinksSearch extends Component {
-
-    // instatiate state for list of books retrieved from googlebooks api and bookSearch value
-    state = {
-        drinks: [],
-        drinkSearch: ""
-    };
+    constructor(props) {
+        super(props);
+        this.state = {
+            // instatiate state for list of books retrieved from googlebooks api and bookSearch value
+            drinks: [],
+            drinkSearch: ""
+        };
+    }
 
     handleInputChange = event => {
         // Destructure the name and value properties off of event.target
@@ -72,23 +74,23 @@ class DrinksSearch extends Component {
                                 {this.state.drinks.map(drink => {
                                     return (
                                         <DrinkListItem
-                                        key={drink.idDrink}
-                                        strIngredient1={[drink.strIngredient1].toString()}
-                                        strIngredient2={[drink.strIngredient2].toString()}
-                                        strIngredient3={[drink.strIngredient3].toString()}
-                                        strIngredient4={[drink.strIngredient4].toString()}
-                                        strIngredient5={[drink.strIngredient5].toString()}
-                                        strIngredient6={[drink.strIngredient6].toString()}
-                                        strMeasure1={[drink.strMeasure1].toString()}
-                                        strMeasure2={[drink.strMeasure2].toString()}
-                                        strMeasure3={[drink.strMeasure3].toString()}
-                                        strMeasure4={[drink.strMeasure4].toString()}
-                                        strMeasure5={[drink.strMeasure5].toString()}
-                                        strMeasure6={[drink.strMeasure6].toString()}
-                                        strDrinkThumb={drink.strDrinkThumb}
-                                        strInstructions={drink.strInstructions}
-                                        strDrink={drink.strDrink}
-                                        link={`https://www.youtube.com/search?q=how+to+make+a+${drink.strDrink.trim().replace(/\s+/g, "+")}+drink`}
+                                            key={drink.idDrink}
+                                            strIngredient1={[drink.strIngredient1].toString()}
+                                            strIngredient2={[drink.strIngredient2].toString()}
+                                            strIngredient3={[drink.strIngredient3].toString()}
+                                            strIngredient4={[drink.strIngredient4].toString()}
+                                            strIngredient5={[drink.strIngredient5].toString()}
+                                            strIngredient6={[drink.strIngredient6].toString()}
+                                            strMeasure1={[drink.strMeasure1].toString()}
+                                            strMeasure2={[drink.strMeasure2].toString()}
+                                            strMeasure3={[drink.strMeasure3].toString()}
+                                            strMeasure4={[drink.strMeasure4].toString()}
+                                            strMeasure5={[drink.strMeasure5].toString()}
+                                            strMeasure6={[drink.strMeasure6].toString()}
+                                            strDrinkThumb={drink.strDrinkThumb}
+                                            strInstructions={drink.strInstructions}
+                                            strDrink={drink.strDrink}
+                                            link={`https://www.youtube.com/search?q=how+to+make+a+${drink.strDrink.trim().replace(/\s+/g, "+")}+drink`}
                                         />
                                     );
                                 })}

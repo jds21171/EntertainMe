@@ -4,12 +4,13 @@ import { Container, Row, Col } from "../../components/Grid";
 import { List, BookListItem } from "../../components/List";
 
 class BooksSaved extends Component {
-
-    // instantiate state for saved books
-    state = {
-        savedBooks: [],
-    };
-
+    constructor(props) {
+        super(props);
+        // instantiate state for saved books
+        this.state = {
+            savedBooks: []
+        };
+    }
     // loads saved books when Saved page loads
     componentDidMount() {
         this.loadBooks();
@@ -17,7 +18,7 @@ class BooksSaved extends Component {
 
     loadBooks = event => {
 
-        API.getBooks()
+        API.getBooks(this.state.savedBooks)
             .then(res => {
                 this.setState({ savedBooks: res.data }, function () {
                     console.log(this.state.savedBooks);

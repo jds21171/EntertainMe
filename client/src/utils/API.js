@@ -28,14 +28,47 @@ const randomDrinkUrl = "https://www.thecocktaildb.com/api/json/v1/1/random.php"
 const drinkUrl = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s="
 
 export default {
+    authenticate: () => {
+		return axios.get("/api/user/authenticate");
+	},
+	// Gets all saved users
+	getUsers: () => {
+		return axios.get("/api/user");
+	},
+	// Get by email
+	getEmail: (email) => {
+		return axios.get("/api/user/" + email);
+	},
+	// Gets user data by id number
+	getById: (id) => {
+		console.log(id)
+		return axios.get("/api/user/" + id);
+	},
+	// Deletes the saved user with the given id
+	deleteUser: (id) => {
+		return axios.delete("/api/user/" + id);
+	},
+	// Adds a user to database
+	createUser: (userData) => {
+		return axios.post("/api/user/create", userData);
+	},
+	// Authenticates user login
+	loginUser: (userData) => {
+		return axios.post("/api/user/login", userData);
+	},
+	// Logs out the current user
+	logoutUser: () => {
+		return axios.post("/api/signout");
+	},
+
     // calls googlbooks api and retrieve books based on user input
     searchBooks: (query) => axios.get(googleUrl + query),
     // get all books saved in db
-    getBooks: () => axios.get("/api/books"),
+    getBooks: () => axios.get("/api/user/books"),
     // saves a book to the db
-    saveBook: (bookData) => axios.post("/api/books", bookData),
+    saveBook: (bookData) => axios.post("/api/user/books", bookData),
     // deletes a book with the given id
-    deleteBook: (id) => axios.delete("/api/books/" + id),
+    deleteBook: (id) => axios.delete("/api/user/books/" + id),
 
     // NYT api call here for top 15 Best Sellers
     getNYTBooks: () => axios.get(nytUrl),
@@ -46,44 +79,44 @@ export default {
     // calls googlbooks api and retrieve books based on user input
     searchMovies: (query) => axios.get(movieUrl + query),
     // get all movies saved in db
-    getMovies: () => axios.get("/api/movies"),
+    getMovies: () => axios.get("/api/user/movies"),
     // saves a book to the db
-    saveMovie: (movieData) => axios.post("/api/movies", movieData),
+    saveMovie: (movieData) => axios.post("/api/user/movies", movieData),
     // deletes a book with the given id
-    deleteMovie: (id) => axios.delete("/api/movies/" + id),
+    deleteMovie: (id) => axios.delete("/api/user/movies/" + id),
 
     // gets trending songs
     getTrendingSongs: () => axios.get(trendingSongUrl),
     // searches movies via napster api
     searchSongs: (query) => axios.get(songUrl + query),
     // get all movies saved in db
-    getSongs: () => axios.get("/api/songs"),
+    getSongs: () => axios.get("/api/user/songs"),
     // saves a book to the db
-    saveSong: (songData) => axios.post("/api/songs", songData),
+    saveSong: (songData) => axios.post("/api/user/songs", songData),
     // deletes a book with the given id
-    deleteSong: (id) => axios.delete("/api/songs/" + id),
+    deleteSong: (id) => axios.delete("/api/user/songs/" + id),
 
     // gets random meals
     getRandomMeals: () => axios.get(randomMealUrl),
     // searches meals via themealdb api
     searchMeals: (query) => axios.get(mealUrl + query),
     // get all meals saved in db
-    getMeals: () => axios.get("/api/meals"),
+    getMeals: () => axios.get("/api/user/meals"),
     // saves a meal to the db
-    saveMeal: (mealData) => axios.post("/api/meals", mealData),
+    saveMeal: (mealData) => axios.post("/api/user/meals", mealData),
     // deletes a meal with the given id
-    deleteMeal: (id) => axios.delete("/api/meals/" + id),
+    deleteMeal: (id) => axios.delete("/api/user/meals/" + id),
 
     // gets random drinks
     getRandomDrinks: () => axios.get(randomDrinkUrl),
     // searches drinks via thecoctaildb api
     searchDrinks: (query) => axios.get(drinkUrl + query),
     // get all drinks saved in db
-    getDrinks: () => axios.get("/api/drinks"),
+    getDrinks: () => axios.get("/api/user/drinks"),
     // saves a drink to the db
-    saveDrink: (drinkData) => axios.post("/api/drinks", drinkData),
+    saveDrink: (drinkData) => axios.post("/api/user/drinks", drinkData),
     // deletes a drink with the given id
-    deleteDrink: (id) => axios.delete("/api/drinks/" + id),
+    deleteDrink: (id) => axios.delete("/api/user/drinks/" + id),
 
     // event url shows events in/near entered city via ticketmaster api
     searchEvents: (query) => axios.get(eventUrl + query)

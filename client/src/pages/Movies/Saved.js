@@ -4,11 +4,13 @@ import { Container, Row, Col } from "../../components/Grid";
 import { List, MovieListItem } from "../../components/List";
 
 class MoviesSaved extends Component {
-
-    // instantiate state for saved books
-    state = {
-        savedMovies: [],
-    };
+    constructor(props) {
+        super(props);
+        this.state = {
+            // instantiate state for saved books
+            savedMovies: [],
+        };
+    }
 
     // loads saved books when Saved page loads
     componentDidMount() {
